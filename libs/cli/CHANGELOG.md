@@ -1,5 +1,11 @@
 # Deep Agents CLI Changelog
 
+## [0.0.59](https://github.com/langchain-ai/deepagents/compare/deepagents-cli==0.0.58...deepagents-cli==0.0.59) (2026-05-12)
+
+### Bug Fixes
+
+* Prevent import deadlock during skill discovery and prewarm ([#3385](https://github.com/langchain-ai/deepagents/issues/3385)) ([0bf8dd1](https://github.com/langchain-ai/deepagents/commit/0bf8dd1cfd680bd4d27ce19295f96c720f525787))
+
 ## [0.0.58](https://github.com/langchain-ai/deepagents/compare/deepagents-cli==0.0.57...deepagents-cli==0.0.58) (2026-05-12)
 
 ### Features
