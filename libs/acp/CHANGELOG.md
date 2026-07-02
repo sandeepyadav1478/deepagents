@@ -2,6 +2,18 @@
 
 # Changelog
 
+## [0.0.9](https://github.com/sandeepyadav1478/deepagents/compare/deepagents-acp==0.0.8...deepagents-acp==0.0.9) (2026-07-02)
+
+
+### Features
+
+* **acp:** Update Claude model list in demo agent ([#4414](https://github.com/sandeepyadav1478/deepagents/issues/4414)) ([fa5e8b9](https://github.com/sandeepyadav1478/deepagents/commit/fa5e8b91d6d3284cf2480777a2b2e79548351da8))
+
+
+### Bug Fixes
+
+* **acp:** require `agent-client-protocol>=0.9.0` ([#3733](https://github.com/sandeepyadav1478/deepagents/issues/3733)) ([376d981](https://github.com/sandeepyadav1478/deepagents/commit/376d9816833ef02a00fd4f1c4ccdf625629c36a4))
+
 ## [0.0.8](https://github.com/langchain-ai/deepagents/compare/deepagents-acp==0.0.7...deepagents-acp==0.0.8) (2026-06-03)
 
 ### Bug Fixes
