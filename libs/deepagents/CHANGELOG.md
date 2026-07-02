@@ -2,6 +2,47 @@
 
 # Deep Agents Changelog
 
+## [0.7.0](https://github.com/sandeepyadav1478/deepagents/compare/deepagents==0.6.12...deepagents==0.7.0) (2026-07-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sdk:** Agents can now overwrite existing files with `write_file` instead of receiving a file-exists error. Workflows, prompts, tests, or guardrails that relied on that error to force `edit_file` usage or to protect existing content must add explicit permission/HITL checks or use `edit_file` when preserving existing content matters.
+* **sdk:** Agents now see a destructive `delete` filesystem tool when the backend supports it. Existing agents may choose to remove files or directories recursively, and existing filesystem permission rules that allow writes can now authorize deletion unless a narrower deny or interrupt rule blocks the target subtree.
+
+### Features
+
+* **code,sdk:** add rubric iteration controls ([#4405](https://github.com/sandeepyadav1478/deepagents/issues/4405)) ([d6692a7](https://github.com/sandeepyadav1478/deepagents/commit/d6692a7c713490f170b17510d613e02ee37574ab))
+* **sdk:** add Bedrock prompt caching middleware ([#4108](https://github.com/sandeepyadav1478/deepagents/issues/4108)) ([a398382](https://github.com/sandeepyadav1478/deepagents/commit/a398382c85ce518ea1b7f365e49df905cdcd498b))
+* **sdk:** add recursive filesystem delete support ([f2a21ec](https://github.com/sandeepyadav1478/deepagents/commit/f2a21ec1606c2560bd2fd5765409a05c2a44edee))
+* **sdk:** allow `write_file` to overwrite existing files ([2506fcc](https://github.com/sandeepyadav1478/deepagents/commit/2506fccfac0e09b656d5e2fefe23162f1c762331))
+* **sdk:** allow users to override default middleware by name ([#4251](https://github.com/sandeepyadav1478/deepagents/issues/4251)) ([90c8472](https://github.com/sandeepyadav1478/deepagents/commit/90c8472ae226394a186bf2075459645c2056db7d))
+* **sdk:** reduce round trips when offloading large tool results with `sandbox.execute` ([#4230](https://github.com/sandeepyadav1478/deepagents/issues/4230)) ([02f5bd7](https://github.com/sandeepyadav1478/deepagents/commit/02f5bd7bc02f2baaf5a1eefce7d686ba62493647))
+* **sdk:** support configurable subagent response format ([#3882](https://github.com/sandeepyadav1478/deepagents/issues/3882)) ([b0e4d7a](https://github.com/sandeepyadav1478/deepagents/commit/b0e4d7aa8d0ad58c65bddef3835e539b3d5b2a99))
+
+
+### Bug Fixes
+
+* **sdk,code:** rename trace version metadata to `lc_versions` ([#3928](https://github.com/sandeepyadav1478/deepagents/issues/3928)) ([27f38c5](https://github.com/sandeepyadav1478/deepagents/commit/27f38c51f960941e102dfc2f9c0220bc16736749))
+* **sdk:** compare provider in `model_matches_spec` ([#3943](https://github.com/sandeepyadav1478/deepagents/issues/3943)) ([34244b6](https://github.com/sandeepyadav1478/deepagents/commit/34244b6aebde4c237758dacedccdc3e22f3ca8e5))
+* **sdk:** don't swallow `TypeError` from custom `token_counter` ([#3927](https://github.com/sandeepyadav1478/deepagents/issues/3927)) ([a6ec9d0](https://github.com/sandeepyadav1478/deepagents/commit/a6ec9d0e797a8b8a7d53d7debb197bb25e80be41))
+* **sdk:** emit terminal rubric iteration status ([#4406](https://github.com/sandeepyadav1478/deepagents/issues/4406)) ([a51c8d2](https://github.com/sandeepyadav1478/deepagents/commit/a51c8d2b1723d143439a1466f5a49a52c442bdfc))
+* **sdk:** handle `Overwrite`-wrapped messages in tool result interception ([#3905](https://github.com/sandeepyadav1478/deepagents/issues/3905)) ([a043c5a](https://github.com/sandeepyadav1478/deepagents/commit/a043c5a6717374c405a3ed740cfdafdd196f5f21))
+* **sdk:** keep private state out of subagent propagation ([#3542](https://github.com/sandeepyadav1478/deepagents/issues/3542)) ([7ff9553](https://github.com/sandeepyadav1478/deepagents/commit/7ff9553fc057a682ba503ebfe9a870adb51ab848))
+* **sdk:** make sync glob timeout bound wall-clock time ([#3866](https://github.com/sandeepyadav1478/deepagents/issues/3866)) ([cba6caf](https://github.com/sandeepyadav1478/deepagents/commit/cba6caf8f708133381506ecc9e217e7e3ca1c7f2))
+* **sdk:** normalize read slices after windowing ([#3888](https://github.com/sandeepyadav1478/deepagents/issues/3888)) ([33d900c](https://github.com/sandeepyadav1478/deepagents/commit/33d900c98b686aa7e7782d0be3019010ced5f03a))
+* **sdk:** preserve media references in summarization archives ([#3990](https://github.com/sandeepyadav1478/deepagents/issues/3990)) ([2d6fb53](https://github.com/sandeepyadav1478/deepagents/commit/2d6fb53cd8c94680a42fa9d7041509ff78050616))
+* **sdk:** return sentinel for empty file lists ([#3709](https://github.com/sandeepyadav1478/deepagents/issues/3709)) ([efafd1e](https://github.com/sandeepyadav1478/deepagents/commit/efafd1e070aeae8901ee3123c7fcbf1815a33c4f))
+* **sdk:** route `BaseSandbox async` helpers through aexecute ([#3996](https://github.com/sandeepyadav1478/deepagents/issues/3996)) ([52dcf1a](https://github.com/sandeepyadav1478/deepagents/commit/52dcf1a42cb00dd614b336038e4398472f78859d))
+* **sdk:** stream Python grep fallback ([#3886](https://github.com/sandeepyadav1478/deepagents/issues/3886)) ([3673d95](https://github.com/sandeepyadav1478/deepagents/commit/3673d95d41aa00f03fbfe2083e46afa485800f3a))
+
+
+### Performance Improvements
+
+* **sdk:** cache filesystem system prompts ([#3889](https://github.com/sandeepyadav1478/deepagents/issues/3889)) ([2f432ba](https://github.com/sandeepyadav1478/deepagents/commit/2f432ba63687d7c8488d5d41d0551d02b4ae00b4))
+* **sdk:** cache grep glob matchers ([#3887](https://github.com/sandeepyadav1478/deepagents/issues/3887)) ([eae3cf1](https://github.com/sandeepyadav1478/deepagents/commit/eae3cf148de3f8c8ee9ffd8af6e5a5e06cce9d6f))
+* **sdk:** count tokens once per model call in summarization middleware ([#3877](https://github.com/sandeepyadav1478/deepagents/issues/3877)) ([6558c8c](https://github.com/sandeepyadav1478/deepagents/commit/6558c8ca3d8e10e3309f95c807e740914af3175f))
+
 ## [0.6.12](https://github.com/langchain-ai/deepagents/compare/deepagents==0.6.11...deepagents==0.6.12) (2026-06-25)
 
 This release adds the `deepagents[aws]` extra, which installs `langchain-aws` so Bedrock users get the automatic prompt caching integration added in [#4108](https://github.com/langchain-ai/deepagents/issues/4108).
